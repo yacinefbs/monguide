@@ -28,7 +28,7 @@
                 <ol class="breadcrumb text-left text-black mt-10">
                   <li><a href="/">{{ __('menu.accueil') }}</a></li>
                   <!-- <li><a href="#">Pages</a></li> -->
-                  <li class="active text-gray-silver">{{ __('prix_ttc_ht.titre') }}</li>
+                  <li class="active text-gray-silver">{{ __('prix_tva.titre') }}</li>
                 </ol>
               </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="col-md-8 blog-pull-right">
               <div class="single-service">
                 <img src="http://placehold.it/750x500" alt="">
-                <h3 class="text-theme-colored line-bottom text-theme-colored">{{ __('prix_ttc_ht.titre')
+                <h3 class="text-theme-colored line-bottom text-theme-colored">{{ __('prix_tva.titre')
                   }}</h3>
                 <!-- Form debut -->
                 <div class="row">

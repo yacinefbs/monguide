@@ -79,6 +79,10 @@
                         <li>
                             <a href="/{{ Config::get('app.locale') }}/prix-tva">{{ __('menu.calcul_prix_tva') }}</a>
                         </li>
+                        <li>
+                            <a href="/{{ Config::get('app.locale') }}/binary-decimal">{{ __('menu.convertisseur_bin_dec') }}</a>
+                        </li>
+                        
                         <!-- <li class="active pull-right">
                             <a class="btn btn-colored btn-flat btn-theme-colored ajaxload-popup"
                                 href="ajax-load/reservation-form.html">

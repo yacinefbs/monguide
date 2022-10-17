@@ -24,11 +24,11 @@
                     <div class="section-content">
                         <div class="row">
                             <div class="col-md-12">
-                                <h1 class="title text-white">{{ __('prix_ht.titre') }}</h1>
+                                <h1 class="title text-white">{{ __('convertisseurs.titre_bin_dec') }}</h1>
                                 <ol class="breadcrumb text-left text-black mt-10">
                                     <li><a href="/">{{ __('menu.accueil') }}</a></li>
                                     <!-- <li><a href="#">Pages</a></li> -->
-                                    <li class="active text-gray-silver">{{ __('prix_ttc_ht.titre') }}</li>
+                                    <li class="active text-gray-silver">{{ __('convertisseurs.titre_bin_dec') }}</li>
                                 </ol>
                             </div>
                         </div>
@@ -42,38 +42,59 @@
                         <div class="col-md-8 blog-pull-right">
                             <div class="single-service">
                                 <img src="http://placehold.it/750x500" alt="">
-                                <h3 class="text-theme-colored line-bottom text-theme-colored">{{ __('prix_ttc_ht.titre')
+                                <h3 class="text-theme-colored line-bottom text-theme-colored">{{
+                                    __('convertisseurs.titre_bin_dec')
                                     }}</h3>
                                 <!-- Form debut -->
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>{{ __('prix_ttc_ht.taux_tva') }}<small>*</small></label>
-                                            <input id="taux_tva" name="form_name" class="form-control" type="text" value="20"
-                                                placeholder="{{ __('prix_ttc_ht.entrer_prix_tva') }}" required=""
-                                                aria-required="true">
+                                            <label>{{ __('convertisseurs.chiffre_de') }}<small>*</small></label>
+                                            <select id="chiffre_de" name="form_post" class="form-control required valid"
+                                                aria-required="true" aria-invalid="false">
+                                                <option value="1">{{ __('convertisseurs.binary') }}</option>
+                                                <!-- <option value="2">{{ __('convertisseurs.decimal') }}</option>
+                                                    <option value="3">{{ __('convertisseurs.octal') }}</option>
+                                                    <option value="4">{{ __('convertisseurs.hexadecimal') }}</option>
+                                                    <option value="4">{{ __('convertisseurs.text') }}</option> -->
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <label>{{ __('prix_ttc_ht.prix_ht') }} <small>*</small></label>
-                                            <input id="prix_ht" name="form_email" class="form-control required" type="text"
-                                                placeholder="{{ __('prix_ttc_ht.entrer_prix_ht') }}"
-                                                aria-required="true">
+                                            <label>{{ __('convertisseurs.chiffre_a') }} <small>*</small></label>
+                                            <select id="chiffre_a" name="form_post" class="form-control required valid"
+                                                aria-required="true" aria-invalid="false">
+                                                <!-- <option value="1">{{ __('convertisseurs.binary') }}</option> -->
+                                                <option value="2">{{ __('convertisseurs.decimal') }}</option>
+                                                <!-- <option value="3">{{ __('convertisseurs.octal') }}</option>
+                                                    <option value="4">{{ __('convertisseurs.hexadecimal') }}</option>
+                                                    <option value="4">{{ __('convertisseurs.text') }}</option> -->
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
-                                        <label>{{ __('prix_ttc_ht.prix_ttc') }} <small>*</small></label>
-                                        <input id="prix_ttc" name="form_email" class="form-control required" type="text"
-                                            placeholder="{{ __('prix_ttc_ht.resultat_ttc') }}" aria-required="true" disabled>
+                                        <label>{{ __('convertisseurs.saisir_chiffre') }} <small>*</small></label>
+                                        <input id="chiffre" name="form_email" class="form-control required" type="text"
+                                            placeholder="{{ __('convertisseurs.saisir_chiffre') }}"
+                                            aria-required="true">
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label>{{ __('convertisseurs.resultat') }} <small>*</small></label>
+                                        <input id="resultat" name="form_resultat" class="form-control required"
+                                            type="text" placeholder="{{ __('convertisseurs.resultat') }}"
+                                            aria-required="true" disabled>
                                     </div>
                                 </div>
                                 <div class="col-sm-12"></div>
                                 <div class="form-group">
                                     <input name="form_botcheck" class="form-control" type="hidden" value="">
-                                    <button id="calculer" type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5"
+                                    <button id="calculer" type="submit"
+                                        class="btn btn-dark btn-theme-colored btn-flat mr-5"
                                         data-loading-text="{{ __('prix_ttc_ht.message_wait') }}">Calculer</button>
                                     <!-- <button type="reset" class="btn btn-default btn-flat btn-theme-colored">Reset</button> -->
                                 </div>
@@ -85,16 +106,14 @@
                                 <div class="widget">
                                     <h4 class="widget-title line-bottom">{{ __('prix_ttc_ht.liste_des_formules_1') }}
                                         <span class="text-theme-colored2">{{ __('prix_ttc_ht.liste_des_formules_2')
-                                            }}</span></h4>
+                                            }}</span>
+                                    </h4>
                                     <div class="services-list">
                                         <ul class="list list-border angle-double-right">
-                                            <li class="active"><a href="/{{ Config::get('app.locale') }}/prix-ttc">{{
-                                                    __('menu.calcul_prix_ttc') }}</a>
+                                            <li class="active"><a
+                                                    href="/{{ Config::get('app.locale') }}/binary-decimal">{{
+                                                    __('menu.convertisseur_bin_dec') }}</a>
                                             </li>
-                                            <li><a href="/{{ Config::get('app.locale') }}/prix-ht">{{
-                                                    __('menu.calcul_prix_ht') }}</a></li>
-                                            <li><a href="/{{ Config::get('app.locale') }}/prix-tva">{{
-                                                    __('menu.calcul_prix_tva') }}</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -108,17 +127,13 @@
         <script>
             $("button#calculer").click(function (e) {
                 e.preventDefault();
-                var taux_tva = parseFloat($('#taux_tva').val());
-                console.log('taux_tva !!!!', taux_tva)
+                var chiffre = parseFloat($('#chiffre').val());
 
-                var valeur_tva = taux_tva/100;
-                console.log('valeur_tva !!!!', valeur_tva)
-                var valeur_ht = parseFloat($('#prix_ht').val());
-                console.log('valeur_ht !!!!', valeur_ht)
 
-                var resultat_ttc = valeur_ht * valeur_tva + valeur_ht;
+                var resultat = parseInt(chiffre, 2);
+
                 // console.log('bouton clicked !!!!', resultat_ttc)
-                $('#prix_ttc').val(resultat_ttc);
+                $('#resultat').val(resultat);
 
             });
         </script>

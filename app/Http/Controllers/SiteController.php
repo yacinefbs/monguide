@@ -18,7 +18,7 @@ class SiteController extends Controller
         $this->seo()->setDescription(__('prix_ht.titre'));
 
         
-        $this->seo()->opengraph()->setUrl('http://current.url.com');
+        $this->seo()->opengraph()->setUrl('https://monguide.net');
         $this->seo()->opengraph()->addProperty('type', 'articles');
         $this->seo()->twitter()->setSite(url()->current());
         $this->seo()->twitter()->setImage(asset('images/logo-wide.png'));
@@ -37,7 +37,7 @@ class SiteController extends Controller
         $this->seo()->setDescription(__('prix_ht.titre'));
 
         
-        $this->seo()->opengraph()->setUrl('http://current.url.com');
+        $this->seo()->opengraph()->setUrl('https://monguide.net');
         $this->seo()->opengraph()->addProperty('type', 'articles');
         $this->seo()->twitter()->setSite(url()->current());
         $this->seo()->twitter()->setImage(asset('images/logo-wide.png'));
@@ -55,7 +55,7 @@ class SiteController extends Controller
         $this->seo()->setDescription(__('prix_ttc.titre'));
 
         
-        $this->seo()->opengraph()->setUrl('http://current.url.com');
+        $this->seo()->opengraph()->setUrl('https://monguide.net');
         $this->seo()->opengraph()->addProperty('type', 'articles');
         $this->seo()->twitter()->setSite(url()->current());
         $this->seo()->twitter()->setImage(asset('images/logo-wide.png'));
@@ -71,7 +71,7 @@ class SiteController extends Controller
         $this->seo()->setDescription(__('prix_tva.titre'));
 
         
-        $this->seo()->opengraph()->setUrl('http://current.url.com');
+        $this->seo()->opengraph()->setUrl('https://monguide.net');
         $this->seo()->opengraph()->addProperty('type', 'articles');
         $this->seo()->twitter()->setSite(url()->current());
         $this->seo()->twitter()->setImage(asset('images/logo-wide.png'));
