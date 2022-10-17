@@ -13,9 +13,9 @@ class SiteController extends Controller
     public function index($locale){
         App::setLocale($locale);
         
-        $this->seo()->setTitle(__('prix_ttc_ht.titre'));
-        $this->seo()->setDescription(__('prix_ttc_ht.titre'));
-        $this->seo()->setDescription(__('prix_ttc_ht.titre'));
+        $this->seo()->setTitle(__('prix_ht.titre'));
+        $this->seo()->setDescription(__('prix_ht.titre'));
+        $this->seo()->setDescription(__('prix_ht.titre'));
 
         
         $this->seo()->opengraph()->setUrl('http://current.url.com');
@@ -32,9 +32,9 @@ class SiteController extends Controller
     public function prixht($locale){
         App::setLocale($locale);
         
-        $this->seo()->setTitle(__('prix_ttc_ht.titre'));
-        $this->seo()->setDescription(__('prix_ttc_ht.titre'));
-        $this->seo()->setDescription(__('prix_ttc_ht.titre'));
+        $this->seo()->setTitle(__('prix_ht.titre'));
+        $this->seo()->setDescription(__('prix_ht.titre'));
+        $this->seo()->setDescription(__('prix_ht.titre'));
 
         
         $this->seo()->opengraph()->setUrl('http://current.url.com');
@@ -50,9 +50,9 @@ class SiteController extends Controller
     }
     public function prixttc($locale){
         App::setLocale($locale);
-        $this->seo()->setTitle(__('prix_ttc_ht.titre'));
-        $this->seo()->setDescription(__('prix_ttc_ht.titre'));
-        $this->seo()->setDescription(__('prix_ttc_ht.titre'));
+        $this->seo()->setTitle(__('prix_ttc.titre'));
+        $this->seo()->setDescription(__('prix_ttc.titre'));
+        $this->seo()->setDescription(__('prix_ttc.titre'));
 
         
         $this->seo()->opengraph()->setUrl('http://current.url.com');
@@ -66,9 +66,9 @@ class SiteController extends Controller
     }
     public function prixtva($locale){
         App::setLocale($locale);
-        $this->seo()->setTitle(__('prix_ttc_ht.titre'));
-        $this->seo()->setDescription(__('prix_ttc_ht.titre'));
-        $this->seo()->setDescription(__('prix_ttc_ht.titre'));
+        $this->seo()->setTitle(__('prix_tva.titre'));
+        $this->seo()->setDescription(__('prix_tva.titre'));
+        $this->seo()->setDescription(__('prix_tva.titre'));
 
         
         $this->seo()->opengraph()->setUrl('http://current.url.com');

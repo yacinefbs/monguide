@@ -24,7 +24,7 @@
           <div class="section-content">
             <div class="row">
               <div class="col-md-12">
-                <h2 class="title text-white">{{ __('prix_ttc_ht.titre') }}</h2>
+                <h1 class="title text-white">{{ __('prix_ttc.titre') }}</h1>
                 <ol class="breadcrumb text-left text-black mt-10">
                   <li><a href="/">{{ __('menu.accueil') }}</a></li>
                   <!-- <li><a href="#">Pages</a></li> -->
