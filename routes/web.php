@@ -18,7 +18,7 @@ $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localizati
     // return $router->get('/prix-ht', ['uses' => 'SiteController@prixht']);
     //Si le visiteurs a saisi une langue n'est pas définit
     $router->get('/', function ($locale) {
-        if (! in_array($locale, ['en', 'ar', 'fr'])) {
+        if (! in_array($locale, ['en', 'ar', 'fr', 'es'])) {
             abort(400);
         }
         // App::setLocale($locale);
