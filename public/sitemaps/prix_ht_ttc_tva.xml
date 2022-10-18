@@ -60,4 +60,22 @@
         <changefreq>Always</changefreq>
         <priority>1.0</priority>
     </url>
+    <url>
+        <loc>https://monguide.net/ar/binary-decimal</loc>
+        <lastmod>2022-10-15T23:30:00+01:00</lastmod>
+        <changefreq>Always</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://monguide.net/fr/binary-decimal</loc>
+        <lastmod>2022-10-15T23:30:00+01:00</lastmod>
+        <changefreq>Always</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://monguide.net/en/binary-decimal</loc>
+        <lastmod>2022-10-15T23:30:00+01:00</lastmod>
+        <changefreq>Always</changefreq>
+        <priority>1.0</priority>
+    </url>
 </urlset>

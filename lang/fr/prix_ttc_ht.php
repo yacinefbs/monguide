@@ -7,7 +7,7 @@ return [
     'resultat_ttc' => 'Résultat du prix TTC',
     'entrer_prix_ht' => 'Entrer la valeur HT',
     'entrer_prix_tva' => 'Entrer le taux TVA',
-    'prix_ht' => 'Prix TTC',
+    'prix_ht' => 'Prix HT',
     'prix_ttc' => 'Prix TTC',
     'taux_tva' => 'Prix TVA (%)',
     'message_wait' => "S'il vous plaît, attendez ...",

@@ -24,11 +24,11 @@
           <div class="section-content">
             <div class="row">
               <div class="col-md-12">
-                <h1 class="title text-white">{{ __('prix_ttc.titre') }}</h1>
+                <h1 class="title text-white">{{ __('prix_ht.titre') }}</h1>
                 <ol class="breadcrumb text-left text-black mt-10">
                   <li><a href="/">{{ __('menu.accueil') }}</a></li>
                   <!-- <li><a href="#">Pages</a></li> -->
-                  <li class="active text-gray-silver">{{ __('prix_ttc.titre') }}</li>
+                  <li class="active text-gray-silver">{{ __('prix_ht.titre') }}</li>
                 </ol>
               </div>
             </div>
@@ -42,7 +42,7 @@
             <div class="col-md-8 blog-pull-right">
               <div class="single-service">
                 <img src="http://placehold.it/750x500" alt="">
-                <h3 class="text-theme-colored line-bottom text-theme-colored">{{ __('prix_ttc.titre')
+                <h3 class="text-theme-colored line-bottom text-theme-colored">{{ __('prix_ht.titre')
                   }}</h3>
                 <!-- Form debut -->
                 <div class="row">
@@ -57,7 +57,7 @@
                     <div class="form-group">
                       <label>{{ __('prix_ttc_ht.prix_ttc') }} <small>*</small></label>
                       <input id="prix_ttc" name="form_email" class="form-control required" type="text"
-                        placeholder="{{ __('prix_ttc_ht.resultat_ttc') }}" aria-required="true" >
+                        placeholder="{{ __('prix_ttc_ht.prix_ttc') }}" aria-required="true" >
                     </div>
                     
                   </div>
