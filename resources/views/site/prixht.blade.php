@@ -73,7 +73,7 @@
                 <div class="form-group">
                   <input name="form_botcheck" class="form-control" type="hidden" value="">
                   <button id="calculer" type="submit" class="btn btn-dark btn-theme-colored btn-flat mr-5"
-                    data-loading-text="{{ __('prix_ttc_ht.message_wait') }}">Calculer</button>
+                    data-loading-text="{{ __('prix_ttc_ht.message_wait') }}">{{ __('global.btn_calculer') }}</button>
                   <!-- <button type="reset" class="btn btn-default btn-flat btn-theme-colored">Reset</button> -->
                 </div>
                 <!-- Form fin -->

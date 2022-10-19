@@ -112,15 +112,15 @@
                     </div>
                 </div> -->
                 <div class="widget dark">
-                    <h5 class="widget-title line-bottom">Subscribe Us</h5>
+                    <h5 class="widget-title line-bottom">{{ __('footer.label_subscribe_us') }}</h5>
                     <!-- Mailchimp Subscription Form Starts Here -->
                     <form id="mailchimp-subscription-form-footer" class="newsletter-form">
                         <div class="input-group">
-                            <input type="email" value="" name="EMAIL" placeholder="Your Email"
+                            <input type="email" value="" name="EMAIL" placeholder="{{ __('footer.msg_input_your_mail') }}"
                                 class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer">
                             <span class="input-group-btn">
                                 <button data-height="45px" class="btn btn-colored btn-theme-colored btn-xs m-0 font-14"
-                                    type="submit">Subscribe</button>
+                                    type="submit">{{ __('footer.btn_subscribe_us') }}</button>
                             </span>
                         </div>
                     </form>
@@ -152,7 +152,7 @@
         <div class="container pt-10 pb-0">
             <div class="row">
                 <div class="col-md-6 sm-text-center">
-                    <p class="font-13 text-black-777 m-0">Copyright &copy;2015 ThemeMascot. All Rights Reserved</p>
+                    <p class="font-13 text-black-777 m-0">{{ __('footer.copyright') }}</p>
                 </div>
                 <!-- <div class="col-md-6 text-right flip sm-text-center">
                     <div class="widget no-border m-0">
