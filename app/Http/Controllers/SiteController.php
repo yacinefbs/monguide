@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
-
+use App\Models\Newsletter;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 
 
@@ -11,6 +11,7 @@ class SiteController extends Controller
 {
     use SEOToolsTrait;
     public function index($locale){
+        
         App::setLocale($locale);
         
         $this->seo()->setTitle(__('prix_ht.titre'));
@@ -31,7 +32,7 @@ class SiteController extends Controller
     }
     public function prixht($locale){
         App::setLocale($locale);
-        
+
         $this->seo()->setTitle(__('prix_ht.titre'));
         $this->seo()->setDescription(__('prix_ht.titre'));
         $this->seo()->setDescription(__('prix_ht.titre'));

@@ -52,7 +52,7 @@ return [
         'defaults' => [
             'card'        => 'summary_large_image',
             //'site'        => '@LuizVinicius73',
-            'image' => asset('images/logo-wide.png'),
+            'image' => 'https://monguide.net/images/logo-wide.png',
             'language' => 'french, fr, français',
             'email' => 'contact@monguide.net',
             'author' => 'Mon guide',

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
+use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ConvertisseurController;
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,7 @@ $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localizati
     $router->get('/prix-ttc', [SiteController::class, 'prixttc']);
     $router->get('/prix-tva', [SiteController::class, 'prixtva']);
     $router->get('/binary-decimal', [ConvertisseurController::class, 'bindec']);
+    $router->get('/newsletter/subscribe', [NewsletterController::class, 'subscribe']);
 
     /* $router->get('/', function ($locale) {
         if (! in_array($locale, ['en', 'ar', 'fr'])) {

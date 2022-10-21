@@ -114,35 +114,58 @@
                 <div class="widget dark">
                     <h5 class="widget-title line-bottom">{{ __('footer.label_subscribe_us') }}</h5>
                     <!-- Mailchimp Subscription Form Starts Here -->
-                    <form id="mailchimp-subscription-form-footer" class="newsletter-form">
+                    <form url id="mailchimp-subscription-form-footer" class="newsletter-form">
                         <div class="input-group">
-                            <input type="email" value="" name="EMAIL" placeholder="{{ __('footer.msg_input_your_mail') }}"
+                            <input id="email_subscribe" type="email" value="" name="EMAIL" placeholder="{{ __('footer.msg_input_your_mail') }}"
                                 class="form-control input-lg font-16" data-height="45px" id="mce-EMAIL-footer">
                             <span class="input-group-btn">
-                                <button data-height="45px" class="btn btn-colored btn-theme-colored btn-xs m-0 font-14"
+                                <button id="btn_subscribe" data-height="45px" class="btn btn-colored btn-theme-colored btn-xs m-0 font-14"
                                     type="submit">{{ __('footer.btn_subscribe_us') }}</button>
                             </span>
                         </div>
                     </form>
                     <!-- Mailchimp Subscription Form Validation-->
                     <script type="text/javascript">
-                        $('#mailchimp-subscription-form-footer').ajaxChimp({
-                            callback: mailChimpCallBack,
-                            url: '//thememascot.us9.list-manage.com/subscribe/post?u=a01f440178e35febc8cf4e51f&amp;id=49d6d30e1e'
+                        
+                        $("button#btn_subscribe").click(function(e){
+                            e.preventDefault();
+                            $.get("/{{ Config::get('app.locale') }}/newsletter/subscribe",
+                            {
+                                email: $('input#email_subscribe').val()
+                            },
+                            function(data, status){
+                                alert("Data: " + data + "\nStatus: " + status);
+                                var $mailchimpform = $('#mailchimp-subscription-form-footer'),
+                                $mailchimpform.children(".alert").remove();
+                                if (data.result === 'success') {
+                                    $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
+                                } else if (data.result === 'error') {
+                                    $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
+                                }
+                                $mailchimpform.prepend($response);
+                            });
                         });
 
-                        function mailChimpCallBack(resp) {
-                            // Hide any previous response text
-                            var $mailchimpform = $('#mailchimp-subscription-form-footer'),
-                                $response = '';
-                            $mailchimpform.children(".alert").remove();
-                            if (resp.result === 'success') {
-                                $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
-                            } else if (resp.result === 'error') {
-                                $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
-                            }
-                            $mailchimpform.prepend($response);
-                        }
+
+
+                        // $('#mailchimp-subscription-form-footer').ajaxChimp({
+                        //     callback: mailChimpCallBack,
+                        //     url: '/{{ Config::get('app.locale') }}/newsletter/subscribe?id=1'
+                        // });
+
+                        // function mailChimpCallBack(resp) {
+                        //     // Hide any previous response text
+                        //     var $mailchimpform = $('#mailchimp-subscription-form-footer'),
+                        //         $response = '';
+                        //         console.log(resp);
+                        //     $mailchimpform.children(".alert").remove();
+                        //     if (resp.result === 'success') {
+                        //         $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
+                        //     } else if (resp.result === 'error') {
+                        //         $response = '<div class="alert alert-danger"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';
+                        //     }
+                        //     $mailchimpform.prepend($response);
+                        // }
                     </script>
                 </div>
             </div>
