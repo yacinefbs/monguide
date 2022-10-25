@@ -26,6 +26,10 @@ class SiteController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
+        $this->seo()->jsonLd()->setTitle(__('prix_ht.titre'));
+        $this->seo()->jsonLd()->setDescription(__('prix_ht.titre'));
+        $this->seo()->jsonLd()->setUrl('https://monguide.net');
+        $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
 
 
         return view('site.prixht', []);
@@ -45,6 +49,10 @@ class SiteController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
+        $this->seo()->jsonLd()->setTitle(__('prix_ht.titre'));
+        $this->seo()->jsonLd()->setDescription(__('prix_ht.titre'));
+        $this->seo()->jsonLd()->setUrl('https://monguide.net/'.$locale.'/prix-ht');
+        $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
 
 
         return view('site.prixht', []);
@@ -63,6 +71,10 @@ class SiteController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
+        $this->seo()->jsonLd()->setTitle(__('prix_ttc.titre'));
+        $this->seo()->jsonLd()->setDescription(__('prix_ttc.titre'));
+        $this->seo()->jsonLd()->setUrl('https://monguide.net/'.$locale.'/ttc');
+        $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
         return view('site.prixttc', []);
     }
     public function prixtva($locale){
@@ -79,6 +91,10 @@ class SiteController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
+        $this->seo()->jsonLd()->setTitle(__('prix_tva.titre'));
+        $this->seo()->jsonLd()->setDescription(__('prix_tva.titre'));
+        $this->seo()->jsonLd()->setUrl('https://monguide.net/'.$locale.'/prix-tva');
+        $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
         return view('site.prixtva', []);
     }
   

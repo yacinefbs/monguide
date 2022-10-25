@@ -25,6 +25,10 @@ class ConvertisseurController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
+        $this->seo()->jsonLd()->setTitle(__('convertisseurs.titre_bin_dec'));
+        $this->seo()->jsonLd()->setDescription(__('convertisseurs.titre_bin_dec'));
+        $this->seo()->jsonLd()->setUrl('https://monguide.net/' . $locale . '/binary-decimal');
+        $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
 
 
         return view('convertisseurs.bindec', []);
