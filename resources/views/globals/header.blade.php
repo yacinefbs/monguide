@@ -11,6 +11,11 @@
 
     gtag('config', 'G-Y7QSNZTPJK');
   </script>
+  <!-- Ad manager -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3690879797577737"
+     crossorigin="anonymous"></script> -->
+     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3690879797577737"
+     crossorigin="anonymous"></script>
   <!-- Meta Tags -->
     <!-- OR -->
     {!! SEO::generate() !!}

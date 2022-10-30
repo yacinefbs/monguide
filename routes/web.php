@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ConvertisseurController;
+use App\Http\Controllers\JoursFeriesController;
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +19,7 @@ use App\Http\Controllers\ConvertisseurController;
 */
 
 $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localization'*/]], function () use ($router) {
+    file_put_contents('logs_access/'.date('Y-m-d_H_i_s.u'). '.txt',  $_SERVER['REMOTE_ADDR']);
     // return $router->get('/prix-ht', ['uses' => 'SiteController@prixht']);
     //Si le visiteurs a saisi une langue n'est pas définit
     $router->get('/', function ($locale) {
@@ -32,6 +36,8 @@ $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localizati
     $router->get('/prix-tva', [SiteController::class, 'prixtva']);
     $router->get('/binary-decimal', [ConvertisseurController::class, 'bindec']);
     $router->get('/newsletter/subscribe', [NewsletterController::class, 'subscribe']);
+    //Jours fériés
+    $router->get('/{pays}/{type}/{annee}', [JoursFeriesController::class, 'view']);
 
     /* $router->get('/', function ($locale) {
         if (! in_array($locale, ['en', 'ar', 'fr'])) {
