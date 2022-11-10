@@ -11,7 +11,8 @@ class SiteController extends Controller
 {
     use SEOToolsTrait;
     public function index($locale){
-        
+
+       
         App::setLocale($locale);
         
         $this->seo()->setTitle(__('prix_ht.titre'));
@@ -35,6 +36,7 @@ class SiteController extends Controller
         return view('site.prixht', []);
     }
     public function prixht($locale){
+        
         App::setLocale($locale);
 
         $this->seo()->setTitle(__('prix_ht.titre'));

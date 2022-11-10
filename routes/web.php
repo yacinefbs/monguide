@@ -5,7 +5,7 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ConvertisseurController;
 use App\Http\Controllers\JoursFeriesController;
-
+use App\Http\Controllers\CronTodayHistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,9 +17,13 @@ use App\Http\Controllers\JoursFeriesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//Crons
+$router->get('/cron/today-history', [CronTodayHistoryController::class, 'index']);
+
+
 
 $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localization'*/]], function () use ($router) {
-    file_put_contents('logs_access/'.date('Y-m-d_H_i_s.u'). '.txt',  $_SERVER['REMOTE_ADDR']);
+    // file_put_contents('logs_access/'.date('Y-m-d_H_i_s.u'). '.txt',  $_SERVER['REMOTE_ADDR']);
     // return $router->get('/prix-ht', ['uses' => 'SiteController@prixht']);
     //Si le visiteurs a saisi une langue n'est pas définit
     $router->get('/', function ($locale) {
