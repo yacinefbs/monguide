@@ -6,6 +6,7 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ConvertisseurController;
 use App\Http\Controllers\JoursFeriesController;
 use App\Http\Controllers\CronTodayHistoryController;
+use App\Http\Controllers\TodayHistoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +35,10 @@ $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localizati
         // return view('site.prixht');
     });
     // App::setLocale($locale);
+    //Today history
+    $router->get('/today-history', [TodayHistoryController::class, 'index']);
+    $router->get('/today-history/{slug}/{id}', [TodayHistoryController::class, 'view']);
+    
     $router->get('/', [SiteController::class, 'prixht']); //par défaut HT
     $router->get('/prix-ht', [SiteController::class, 'prixht']);
     $router->get('/prix-ttc', [SiteController::class, 'prixttc']);
@@ -42,6 +47,8 @@ $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localizati
     $router->get('/newsletter/subscribe', [NewsletterController::class, 'subscribe']);
     //Jours fériés
     $router->get('/{pays}/{type}/{annee}', [JoursFeriesController::class, 'view']);
+
+    
 
     /* $router->get('/', function ($locale) {
         if (! in_array($locale, ['en', 'ar', 'fr'])) {

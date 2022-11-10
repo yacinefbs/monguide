@@ -82,6 +82,9 @@
                         <li>
                             <a href="/{{ Config::get('app.locale') }}/binary-decimal">{{ __('menu.convertisseur_bin_dec') }}</a>
                         </li>
+                        <li>
+                            <a href="/{{ Config::get('app.locale') }}/today-history">{{ __('menu.todayhistory') }}</a>
+                        </li>
                         
                         <!-- <li class="active pull-right">
                             <a class="btn btn-colored btn-flat btn-theme-colored ajaxload-popup"
