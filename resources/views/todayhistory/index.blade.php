@@ -57,7 +57,7 @@
                                             </ul>
                                             <p>{{ $todayhistory->synopsis }}</p>
                                             <div class="mt-10">
-                                                <a class="btn btn-dark btn-theme-colored btn-sm mt-10" href="/{{ Config::get('app.locale') }}/today-history/{{ $todayhistory->slug }}/{{ $todayhistory->id }}">Details</a>
+                                                <a class="btn btn-dark btn-theme-colored btn-sm mt-10" href="https://monguide.net/{{ $todayhistory->code_lang }}/today-history/{{ $todayhistory->slug }}/{{ $todayhistory->id }}">Details</a>
                                                 <a href="{{ $todayhistory->url }}" class="btn btn-dark btn-sm mt-10" target="_blank">Source</a>
                                             </div>
                                         </div>

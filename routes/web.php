@@ -86,8 +86,21 @@ $router->get('/', function () {
     return view('site.prixht');
 });
 
+//----Dévut : url error search console-----
+$router->get('/product-page/blend-04', function () {
+    header('Location: https://monguide.net');
+});
+$router->get('/product-page/coffee-club-s-starter-kit', function () {
+    header('Location: https://monguide.net');
+});
+$router->get('/product-page/coffee-of-the-month', function () {
+    header('Location: https://monguide.net');
+});
+//----Fin : url error search console-----
 
-
+// $router->get('{any?}', function ($route) {
+//     header('Location: https://monguide.net');
+// })->where('any', '.*');
 
 
 

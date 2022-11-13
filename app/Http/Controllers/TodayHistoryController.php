@@ -31,7 +31,7 @@ class TodayHistoryController extends Controller
         $this->seo()->jsonLd()->setUrl('https://monguide.net/' . $locale . '/today-history');
         $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
 
-        $today_history = TodayHistory::where('status', 1)->get();
+        $today_history = TodayHistory::where('status', 1)->orderby('id', 'desc')->get();
         return view('todayhistory.index', ['todayshistory' => $today_history]);
     }
 

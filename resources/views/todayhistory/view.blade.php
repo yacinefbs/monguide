@@ -70,7 +70,7 @@
                                     <div class="services-list">
                                         <ul class="list list-border angle-double-right">
                                             @foreach ($lasttodayhistory as $value)
-                                            <li class="active"><a href="/{{ Config::get('app.locale') }}/today-history/{{ $value->slug }}/{{ $value->id }}">{{ $todayhistory->title }}</a>
+                                            <li class="active"><a href="/{{ $value->code_lang }}/today-history/{{ $value->slug }}/{{ $value->id }}">{{ $value->title }}</a>
                                             </li>
                                             @endforeach
                                         </ul>

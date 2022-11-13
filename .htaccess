@@ -10,4 +10,4 @@
     RewriteRule ^(.*)$ public/$1 [L]
     # Direct all requests to /public folder
     
-    </IfModule>
+</IfModule>

@@ -19,6 +19,9 @@
   <!-- Meta Tags -->
     <!-- OR -->
     {!! SEO::generate() !!}
+    <meta name="robots" content="index, follow">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <meta name="theme-color" content="blue">
     <meta name="keywords" content="prix HT, prix TTC, TVA, VAT, guide">
@@ -28,6 +31,8 @@
     <meta property="og:locale" content="fr_FR">
     <meta name="twitter:content-language" content="fr">
     <meta name="twitter:distribution" content="global">
+    <link href="<?= (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" ?>" rel="canonical">
+
     <!-- <meta name="twitter:image" content="{{ asset('images/logo-wide.png') }}"> -->
   <!-- Page Title -->
   <!-- <title>EduPlus | Education & Courses HTML5 Template</title> -->
