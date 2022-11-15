@@ -41,7 +41,8 @@
                         <div class="col-md-12 blog-pull-right">
                             <div class="row">
                             @foreach ($todayshistory as $todayhistory)
-                                <div class="col-sm-6 col-md-6 col-lg-6">
+                            <div>
+                                <!-- <div class="col-sm-6 col-md-6 col-lg-6"> -->
                                     <div class="schedule-box maxwidth500 bg-light mb-30">
                                         <div class="thumb">
                                             <img class="img-fullwidth" alt="" src="https://placehold.it/220x160">

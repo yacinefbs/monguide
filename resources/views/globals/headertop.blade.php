@@ -32,8 +32,7 @@
         <div class="container pt-20 pb-20">
             <div class="row">
                 <div class="col-xs-12 col-sm-12 col-md-3">
-                    <a class="menuzord-brand pull-left flip sm-pull-center mb-15" href="/{{ Config::get('app.locale') }}/"><img
-                            src="{{ asset('images/logo-wide.png') }}" alt=""></a>
+                    <a class="menuzord-brand pull-left flip sm-pull-center mb-15" href="/{{ Config::get('app.locale') }}/"><img src="{{ asset('images/logo-monguide-1.png') }}" alt=""></a>
                 </div>
                 <!--<div class="col-xs-12 col-sm-4 col-md-3 float-right">
                     <div class="widget no-border sm-text-center mt-10 mb-10 m-0">
@@ -71,21 +70,23 @@
                             <a href="#home">{{ __('menu.accueil') }}</a>
                         </li>
                         <li>
-                            <a href="/{{ Config::get('app.locale') }}/prix-ttc">{{ __('menu.calcul_prix_ttc') }}</a>
-                        </li>
-                        <li>
-                            <a href="/{{ Config::get('app.locale') }}/prix-ht">{{ __('menu.calcul_prix_ht') }}</a>
-                        </li>
-                        <li>
-                            <a href="/{{ Config::get('app.locale') }}/prix-tva">{{ __('menu.calcul_prix_tva') }}</a>
-                        </li>
-                        <li>
-                            <a href="/{{ Config::get('app.locale') }}/binary-decimal">{{ __('menu.convertisseur_bin_dec') }}</a>
-                        </li>
-                        <li>
                             <a href="/{{ Config::get('app.locale') }}/today-history">{{ __('menu.todayhistory') }}</a>
                         </li>
-                        
+                        <li><a href="#home">Holidays<span class="indicator"></span></a>
+                            <ul class="dropdown" style="right: auto; display: none;">
+                                <li><a href="/{{ Config::get('app.locale') }}/canada/jours-feries/alberta/2023">Canada</a></li>
+                                <!-- <li><a href="/{{ Config::get('app.locale') }}/maroc/jours-feries-civile/2023">Maroc</a></li> -->
+                                <li><a href="/{{ Config::get('app.locale') }}/egypte/jours-feries-civile/2023">Egypt</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#home">Tools<span class="indicator"></span></a>
+                            <ul class="dropdown" style="right: auto; display: none;">
+                                <li><a href="/{{ Config::get('app.locale') }}/prix-ttc">{{ __('menu.calcul_prix_ttc') }}</a></li>
+                                <li><a href="/{{ Config::get('app.locale') }}/prix-ht">{{ __('menu.calcul_prix_ht') }}</a></li>
+                                <li><a href="/{{ Config::get('app.locale') }}/prix-tva">{{ __('menu.calcul_prix_tva') }}</a></li>
+                                <li><a href="/{{ Config::get('app.locale') }}/binary-decimal">{{ __('menu.convertisseur_bin_dec') }}</a></li>
+                            </ul>
+                        </li>
                         <!-- <li class="active pull-right">
                             <a class="btn btn-colored btn-flat btn-theme-colored ajaxload-popup"
                                 href="ajax-load/reservation-form.html">

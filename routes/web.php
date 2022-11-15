@@ -6,7 +6,9 @@ use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\ConvertisseurController;
 use App\Http\Controllers\JoursFeriesController;
 use App\Http\Controllers\CronTodayHistoryController;
+use App\Http\Controllers\CronCanadaHolidaysController;
 use App\Http\Controllers\TodayHistoryController;
+use App\Http\Controllers\CanadaHolidaysController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +22,8 @@ use App\Http\Controllers\TodayHistoryController;
 */
 //Crons
 $router->get('/cron/today-history', [CronTodayHistoryController::class, 'index']);
+$router->get('/cron/canada-holidays', [CronCanadaHolidaysController::class, 'index']);
+$router->get('/sitemap/canada-holidays', [CronCanadaHolidaysController::class, 'sitemap']);
 
 
 
@@ -38,6 +42,8 @@ $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localizati
     //Today history
     $router->get('/today-history', [TodayHistoryController::class, 'index']);
     $router->get('/today-history/{slug}/{id}', [TodayHistoryController::class, 'view']);
+    //holidays canada
+    $router->get('/canada/{holidays_lang}/{slug_province}/{annee}', [CanadaHolidaysController::class, 'view']);
     
     $router->get('/', [SiteController::class, 'prixht']); //par défaut HT
     $router->get('/prix-ht', [SiteController::class, 'prixht']);
@@ -47,7 +53,7 @@ $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localizati
     $router->get('/newsletter/subscribe', [NewsletterController::class, 'subscribe']);
     //Jours fériés
     $router->get('/{pays}/{type}/{annee}', [JoursFeriesController::class, 'view']);
-
+    
     
 
     /* $router->get('/', function ($locale) {
@@ -94,6 +100,21 @@ $router->get('/product-page/coffee-club-s-starter-kit', function () {
     header('Location: https://monguide.net');
 });
 $router->get('/product-page/coffee-of-the-month', function () {
+    header('Location: https://monguide.net');
+});
+$router->get('/product-page/blend-02', function () {
+    header('Location: https://monguide.net');
+});
+$router->get('/shop', function () {
+    header('Location: https://monguide.net');
+});
+$router->get('/product-page/coffee-club-s-roaster-s-picks', function () {
+    header('Location: https://monguide.net');
+});
+$router->get('/product-page/california-single-origin', function () {
+    header('Location: https://monguide.net');
+});
+$router->get('/product-page/blend-03', function () {
     header('Location: https://monguide.net');
 });
 //----Fin : url error search console-----

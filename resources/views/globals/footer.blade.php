@@ -3,7 +3,7 @@
         <div class="row border-bottom-black">
             <div class="col-sm-6 col-md-3">
                 <div class="widget dark">
-                    <img class="mt-10 mb-20" alt="" src="{{ asset('images/logo-wide-white.png') }}">
+                    <img class="mt-10 mb-20" alt="" src="{{ asset('images/logo-monguide-1.png') }}">
                     <!-- <p>Lorem ipsum dolor adipisicing amet, consectetur sit elit. Aspernatur incidihil quo officia.</p> -->
                     <ul class="list-inline mt-5">
                         <!-- <li class="m-0 pl-10 pr-10"> <i class="fa fa-map-marker text-theme-colored2 mr-5"></i> <a
