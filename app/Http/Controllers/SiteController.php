@@ -10,16 +10,15 @@ use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 class SiteController extends Controller
 {
     use SEOToolsTrait;
-    public function index($locale){
+    public function index($locale='en'){
         
-
 
        
         App::setLocale($locale);
         
-        $this->seo()->setTitle(__('prix_ht.titre'));
-        $this->seo()->setDescription(__('prix_ht.titre'));
-        $this->seo()->setDescription(__('prix_ht.titre'));
+        $this->seo()->setTitle(substr(__('prix_ht.titre'), 0, 160));
+        $this->seo()->setDescription(substr(__('prix_ht.titre'), 0, 160));
+        $this->seo()->setDescription(substr(__('prix_ht.titre'), 0, 160));
 
         
         $this->seo()->opengraph()->setUrl('https://monguide.net');
@@ -29,8 +28,8 @@ class SiteController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
-        $this->seo()->jsonLd()->setTitle(__('prix_ht.titre'));
-        $this->seo()->jsonLd()->setDescription(__('prix_ht.titre'));
+        $this->seo()->jsonLd()->setTitle(substr(__('prix_ht.titre'), 0, 160));
+        $this->seo()->jsonLd()->setDescription(substr(__('prix_ht.titre'), 0, 160));
         $this->seo()->jsonLd()->setUrl('https://monguide.net');
         $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
 
@@ -38,11 +37,11 @@ class SiteController extends Controller
         return view('site.prixht', []);
     }
     public function prixht($locale){
-       
-$curl = curl_init();
+       if(!empty($_GET['test'])){
+      $curl = curl_init();
 
 curl_setopt_array($curl, [
-	CURLOPT_URL => "https://eventfulvolodimir-kudriachenkov1.p.rapidapi.com/getCategories",
+	CURLOPT_URL => "https://google-translate1.p.rapidapi.com/language/translate/v2",
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_FOLLOWLOCATION => true,
 	CURLOPT_ENCODING => "",
@@ -50,9 +49,10 @@ curl_setopt_array($curl, [
 	CURLOPT_TIMEOUT => 30,
 	CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
 	CURLOPT_CUSTOMREQUEST => "POST",
-	CURLOPT_POSTFIELDS => "consumerSecret=%3CREQUIRED%3E&appKey=%3CREQUIRED%3E&consumerKey=%3CREQUIRED%3E",
+	CURLOPT_POSTFIELDS => "q=Hello%2C%20world!&target=es&source=en",
 	CURLOPT_HTTPHEADER => [
-		"X-RapidAPI-Host: Eventfulvolodimir-kudriachenkoV1.p.rapidapi.com",
+		"Accept-Encoding: application/gzip",
+		"X-RapidAPI-Host: google-translate1.p.rapidapi.com",
 		"X-RapidAPI-Key: tySQn9P3mTmsh6rPVNKzzQOSRVTyp1A98MrjsnBq2BFcBv3zaP",
 		"content-type: application/x-www-form-urlencoded"
 	],
@@ -69,13 +69,14 @@ if ($err) {
 	echo $response;
 }
         exit;
+    }
 
 
         App::setLocale($locale);
 
-        $this->seo()->setTitle(__('prix_ht.titre'));
-        $this->seo()->setDescription(__('prix_ht.titre'));
-        $this->seo()->setDescription(__('prix_ht.titre'));
+        $this->seo()->setTitle(substr(__('prix_ht.titre'), 0, 160));
+        $this->seo()->setDescription(substr(__('prix_ht.titre'), 0, 160));
+        $this->seo()->setDescription(substr(__('prix_ht.titre'), 0, 160));
 
         
         $this->seo()->opengraph()->setUrl('https://monguide.net');
@@ -85,8 +86,8 @@ if ($err) {
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
-        $this->seo()->jsonLd()->setTitle(__('prix_ht.titre'));
-        $this->seo()->jsonLd()->setDescription(__('prix_ht.titre'));
+        $this->seo()->jsonLd()->setTitle(substr(__('prix_ht.titre'), 0, 160));
+        $this->seo()->jsonLd()->setDescription(substr(__('prix_ht.titre'), 0, 160));
         $this->seo()->jsonLd()->setUrl('https://monguide.net/'.$locale.'/prix-ht');
         $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
 
@@ -95,9 +96,9 @@ if ($err) {
     }
     public function prixttc($locale){
         App::setLocale($locale);
-        $this->seo()->setTitle(__('prix_ttc.titre'));
-        $this->seo()->setDescription(__('prix_ttc.titre'));
-        $this->seo()->setDescription(__('prix_ttc.titre'));
+        $this->seo()->setTitle(substr(__('prix_ttc.titre'), 0, 160));
+        $this->seo()->setDescription(substr(__('prix_ttc.titre'), 0, 160));
+        $this->seo()->setDescription(substr(__('prix_ttc.titre'), 0, 160));
 
         
         $this->seo()->opengraph()->setUrl('https://monguide.net');
@@ -107,17 +108,17 @@ if ($err) {
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
-        $this->seo()->jsonLd()->setTitle(__('prix_ttc.titre'));
-        $this->seo()->jsonLd()->setDescription(__('prix_ttc.titre'));
+        $this->seo()->jsonLd()->setTitle(substr(__('prix_ttc.titre'), 0, 160));
+        $this->seo()->jsonLd()->setDescription(substr(__('prix_ttc.titre'), 0, 160));
         $this->seo()->jsonLd()->setUrl('https://monguide.net/'.$locale.'/ttc');
         $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
         return view('site.prixttc', []);
     }
     public function prixtva($locale){
         App::setLocale($locale);
-        $this->seo()->setTitle(__('prix_tva.titre'));
-        $this->seo()->setDescription(__('prix_tva.titre'));
-        $this->seo()->setDescription(__('prix_tva.titre'));
+        $this->seo()->setTitle(substr(__('prix_tva.titre'), 0, 160));
+        $this->seo()->setDescription(substr(__('prix_tva.titre'), 0, 160));
+        $this->seo()->setDescription(substr(__('prix_tva.titre'), 0, 160));
 
         
         $this->seo()->opengraph()->setUrl('https://monguide.net');
@@ -127,8 +128,8 @@ if ($err) {
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
-        $this->seo()->jsonLd()->setTitle(__('prix_tva.titre'));
-        $this->seo()->jsonLd()->setDescription(__('prix_tva.titre'));
+        $this->seo()->jsonLd()->setTitle(substr(__('prix_tva.titre'), 0, 160));
+        $this->seo()->jsonLd()->setDescription(substr(__('prix_tva.titre'), 0, 160));
         $this->seo()->jsonLd()->setUrl('https://monguide.net/'.$locale.'/prix-tva');
         $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
         return view('site.prixtva', []);

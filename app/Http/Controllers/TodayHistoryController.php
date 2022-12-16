@@ -15,8 +15,8 @@ class TodayHistoryController extends Controller
     public function index($locale){
         App::setLocale($locale);
         
-        $this->seo()->setTitle(__('todayhistory.seo_title'));
-        $this->seo()->setDescription(__('todayhistory.seo_description'));
+        $this->seo()->setTitle(substr(__('todayhistory.seo_title'), 0, 70));
+        $this->seo()->setDescription(substr(__('todayhistory.seo_description'), 0, 160));
 
         
         $this->seo()->opengraph()->setUrl('https://monguide.net');
@@ -26,8 +26,8 @@ class TodayHistoryController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
-        $this->seo()->jsonLd()->setTitle(__('todayhistory.seo_title'));
-        $this->seo()->jsonLd()->setDescription(__('todayhistory.seo_description'));
+        $this->seo()->jsonLd()->setTitle(substr(__('todayhistory.seo_title'), 0, 70));
+        $this->seo()->jsonLd()->setDescription(substr(__('todayhistory.seo_description'), 0, 160));
         $this->seo()->jsonLd()->setUrl('https://monguide.net/' . $locale . '/today-history');
         $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
 
@@ -41,8 +41,8 @@ class TodayHistoryController extends Controller
         $today_history = TodayHistory::where('status', 1)->where('id', $id)->first();
         $last_today_history = TodayHistory::where('status', 1)->where('code_lang', $locale)->orderby('id', 'desc')->limit(5)->get();
         
-        $this->seo()->setTitle($today_history->title);
-        $this->seo()->setDescription($today_history->synopsis);
+        $this->seo()->setTitle(substr($today_history->title, 0, 70));
+        $this->seo()->setDescription(substr($today_history->synopsis, 0, 160));
 
         
         $this->seo()->opengraph()->setUrl('https://monguide.net');
@@ -52,8 +52,8 @@ class TodayHistoryController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
-        $this->seo()->jsonLd()->setTitle($today_history->title);
-        $this->seo()->jsonLd()->setDescription($today_history->synopsis);
+        $this->seo()->jsonLd()->setTitle(substr($today_history->title, 0, 70));
+        $this->seo()->jsonLd()->setDescription(substr($today_history->synopsis, 0, 160));
         $this->seo()->jsonLd()->setUrl('https://monguide.net/' . $locale . '/today-history/'.$today_history->slug.'/'.$today_history->id);
         $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
 

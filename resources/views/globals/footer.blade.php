@@ -135,7 +135,7 @@
                             },
                             function(data, status){
                                 alert("Data: " + data + "\nStatus: " + status);
-                                var $mailchimpform = $('#mailchimp-subscription-form-footer'),
+                                var $mailchimpform = $('#mailchimp-subscription-form-footer');
                                 $mailchimpform.children(".alert").remove();
                                 if (data.result === 'success') {
                                     $response = '<div class="alert alert-success"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + resp.msg + '</div>';

@@ -37,8 +37,8 @@ class JoursFeriesController extends Controller
             }
         }
 
-        $this->seo()->setTitle(__('joursferies.titre'));
-        $this->seo()->setDescription(str_replace('[pays]', $pays, __('joursferies.description')));
+        $this->seo()->setTitle(substr(__('joursferies.titre'), 0, 160));
+        $this->seo()->setDescription(substr(str_replace('[pays]', $pays, __('joursferies.description')), 0, 160));
 
         
         $this->seo()->opengraph()->setUrl('https://monguide.net');
@@ -48,8 +48,8 @@ class JoursFeriesController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
-        $this->seo()->jsonLd()->setTitle(__('joursferies.titre'));
-        $this->seo()->jsonLd()->setDescription(str_replace('[pays]', $pays, __('joursferies.description')));
+        $this->seo()->jsonLd()->setTitle(substr(__('joursferies.titre'), 0, 160));
+        $this->seo()->jsonLd()->setDescription(substr(str_replace('[pays]', $pays, __('joursferies.description')), 0, 160));
         $this->seo()->jsonLd()->setUrl('https://monguide.net');
         $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
 

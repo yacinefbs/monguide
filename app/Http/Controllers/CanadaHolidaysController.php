@@ -24,8 +24,8 @@ class CanadaHolidaysController extends Controller
         }
         $holidays = CanadaHolidays::where('province_id', $province->id)/* ->where('annee', intval($annee)) */->get();
 
-        $this->seo()->setTitle(__('holidays.titre'));
-        $this->seo()->setDescription(str_replace('[province]', $province_name, __('holidays.description')));
+        $this->seo()->setTitle(substr(__('holidays.titre'), 0, 70));
+        $this->seo()->setDescription(substr(str_replace('[province]', $province_name, __('holidays.description')), 0, 160));
 
         
         $this->seo()->opengraph()->setUrl((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
@@ -35,8 +35,8 @@ class CanadaHolidaysController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
-        $this->seo()->jsonLd()->setTitle(__('holidays.titre'));
-        $this->seo()->jsonLd()->setDescription(str_replace('[province]', $province_name, __('holidays.description')));
+        $this->seo()->jsonLd()->setTitle(substr(__('holidays.titre'), 0, 70));
+        $this->seo()->jsonLd()->setDescription(substr(str_replace('[province]', $province_name, __('holidays.description')), 0, 160));
         $this->seo()->jsonLd()->setUrl((isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]");
         $this->seo()->jsonLd()->setImage(asset('images/logo-monguide-1.png'));
 

@@ -13,9 +13,9 @@ class ConvertisseurController extends Controller
     public function bindec($locale){
         App::setLocale($locale);
         
-        $this->seo()->setTitle(__('convertisseurs.titre_bin_dec'));
-        $this->seo()->setDescription(__('convertisseurs.titre_bin_dec'));
-        $this->seo()->setDescription(__('convertisseurs.titre_bin_dec'));
+        $this->seo()->setTitle(substr(__('convertisseurs.titre_bin_dec'), 0, 160));
+        $this->seo()->setDescription(substr(__('convertisseurs.titre_bin_dec'), 0, 160));
+        $this->seo()->setDescription(substr(__('convertisseurs.titre_bin_dec'), 0, 160));
 
         
         $this->seo()->opengraph()->setUrl('https://monguide.net');
@@ -25,8 +25,8 @@ class ConvertisseurController extends Controller
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
-        $this->seo()->jsonLd()->setTitle(__('convertisseurs.titre_bin_dec'));
-        $this->seo()->jsonLd()->setDescription(__('convertisseurs.titre_bin_dec'));
+        $this->seo()->jsonLd()->setTitle(substr(__('convertisseurs.titre_bin_dec'), 0, 160));
+        $this->seo()->jsonLd()->setDescription(substr(__('convertisseurs.titre_bin_dec'), 0, 160));
         $this->seo()->jsonLd()->setUrl('https://monguide.net/' . $locale . '/binary-decimal');
         $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
 

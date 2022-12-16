@@ -22,6 +22,7 @@ use App\Http\Controllers\CanadaHolidaysController;
 */
 //Crons
 $router->get('/cron/today-history', [CronTodayHistoryController::class, 'index']);
+$router->get('/cron/today-history-translate/{locale}', [CronTodayHistoryController::class, 'translate']);
 $router->get('/cron/canada-holidays', [CronCanadaHolidaysController::class, 'index']);
 $router->get('/sitemap/canada-holidays', [CronCanadaHolidaysController::class, 'sitemap']);
 
@@ -45,7 +46,7 @@ $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localizati
     //holidays canada
     $router->get('/canada/{holidays_lang}/{slug_province}/{annee}', [CanadaHolidaysController::class, 'view']);
     
-    $router->get('/', [SiteController::class, 'prixht']); //par défaut HT
+    $router->get('/', [SiteController::class, 'index']); //par défaut HT
     $router->get('/prix-ht', [SiteController::class, 'prixht']);
     $router->get('/prix-ttc', [SiteController::class, 'prixttc']);
     $router->get('/prix-tva', [SiteController::class, 'prixtva']);
@@ -87,10 +88,11 @@ $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localizati
 });
 
 
-$router->get('/', function () {
-    App::setLocale('fr');
-    return view('site.prixht');
-});
+// $router->get('/', function () {
+//     App::setLocale('fr');
+//     return view('site.index');
+// });
+$router->get('/', [SiteController::class, 'index']); //par défaut HT
 
 //----Dévut : url error search console-----
 $router->get('/product-page/blend-04', function () {
