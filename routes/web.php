@@ -27,6 +27,7 @@ $router->get('/cron/canada-holidays', [CronCanadaHolidaysController::class, 'ind
 $router->get('/sitemap/canada-holidays', [CronCanadaHolidaysController::class, 'sitemap']);
 
 
+$router->get('/{locale}', [SiteController::class, 'index']); //par défaut HT
 
 $router->group(['prefix' => '/{locale}', 'middleware' => [/* 'token','localization'*/]], function () use ($router) {
     // file_put_contents('logs_access/'.date('Y-m-d_H_i_s.u'). '.txt',  $_SERVER['REMOTE_ADDR']);

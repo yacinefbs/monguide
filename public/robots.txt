@@ -1,2 +1,5 @@
 User-agent: *
-Disallow:
+Disallow: /*/newsletter/subscribe?*
+Disallow: /*/newsletter/subscribe
+Disallow: /shop
+Disallow: /faq

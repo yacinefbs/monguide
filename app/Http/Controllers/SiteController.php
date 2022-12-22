@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\App;
 use Illuminate\Http\Request;
 use App\Models\Newsletter;
+use App\Models\TodayHistory;
 use Artesaos\SEOTools\Traits\SEOTools as SEOToolsTrait;
 
 
@@ -16,25 +17,25 @@ class SiteController extends Controller
        
         App::setLocale($locale);
         
-        $this->seo()->setTitle(substr(__('prix_ht.titre'), 0, 160));
-        $this->seo()->setDescription(substr(__('prix_ht.titre'), 0, 160));
-        $this->seo()->setDescription(substr(__('prix_ht.titre'), 0, 160));
+        $this->seo()->setTitle(substr(__('home.title'), 0, 160));
+        $this->seo()->setDescription(substr(__('home.description'), 0, 160));
 
         
         $this->seo()->opengraph()->setUrl('https://monguide.net');
-        $this->seo()->opengraph()->addProperty('type', 'articles');
+        $this->seo()->opengraph()->addProperty('type', 'WebSite');
         $this->seo()->twitter()->setSite(url()->current());
         $this->seo()->twitter()->setImage(asset('images/logo-wide.png'));
         
         $this->seo()->setCanonical(url()->current());
         $this->seo()->jsonLd()->setType('Article');
-        $this->seo()->jsonLd()->setTitle(substr(__('prix_ht.titre'), 0, 160));
-        $this->seo()->jsonLd()->setDescription(substr(__('prix_ht.titre'), 0, 160));
+        $this->seo()->jsonLd()->setTitle(substr(__('home.title'), 0, 160));
+        $this->seo()->jsonLd()->setDescription(substr(__('home.description'), 0, 160));
         $this->seo()->jsonLd()->setUrl('https://monguide.net');
         $this->seo()->jsonLd()->setImage(asset('images/logo-wide.png'));
+        
+        $today_history = TodayHistory::where('status', 1)->limit(3)->orderby('id', 'desc')->get();
 
-
-        return view('site.prixht', []);
+        return view('site.index', ['todayshistory' => $today_history]);
     }
     public function prixht($locale){
        if(!empty($_GET['test'])){

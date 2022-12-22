@@ -56,27 +56,7 @@ class CronTodayHistoryController extends Controller
                 echo "<br />Inserted : " . $inserted = $today_history->save();
 
                 if ($inserted) {
-                    $todays_historys = TodayHistory::orderby('id', 'desc')->get();
-                    $xml = '<?xml version="1.0" encoding="utf-8"?>';
-                    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-                    $xml .= '<url>';
-                    $xml .= '<loc>https://monguide.net/en/today-history</loc>';
-                    $xml .= '<lastmod>2022-11-11T00:30:00+01:00</lastmod>';
-                    $xml .= '<changefreq>Always</changefreq>';
-                    $xml .= '<priority>1.0</priority>';
-                    $xml .= '</url>';
-                    foreach ($todays_historys as $key => $today_history) {
-                        $xml .= '<url>';
-                        $xml .= '<loc>https://monguide.net/' . $today_history->code_lang . '/today-history/' . $today_history->slug . '/' . $today_history->id . '</loc>';
-                        $xml .= '<lastmod>' . date('Y-m-d\TH:i:s+01:00', strtotime($today_history->created_at)) . '</lastmod>';
-                        $xml .= '<changefreq>Always</changefreq>';
-                        $xml .= '<priority>1.0</priority>';
-                        $xml .= '</url>';
-                    }
-                    $xml .= '</urlset>';
-                    if (file_put_contents('sitemaps/todayhistory.xml', $xml)) {
-                        echo "\ntodayhistory.xml file created on project root folder.. : ";
-                    }
+                    $this->generetasitemap();
                 }
             } catch (\Exception $e) {
                 echo $e->getMessage();
@@ -87,15 +67,19 @@ class CronTodayHistoryController extends Controller
     }
     
     public function translate($locale){
-        $todays_historys_translate = TodayHistory::get();
+        if(empty($_GET['test'])){
+            exit;
+        }
+        $todays_historys_translate = TodayHistory::where('translated', 0)->limit(1)->get();
         
         foreach($todays_historys_translate as $key => $today_history_translate){
-            $texte_to_translate = ($today_history_translate->title . '$$$$' . $today_history_translate->synopsis);
+            $texte_to_translate = ($today_history_translate->title . '$$$$' . $today_history_translate->synopsis . '$$$$' . $today_history_translate->date);
             
+            $texte_to_translate = str_replace('“', "'", $texte_to_translate);
             $curl = curl_init();
             
             curl_setopt_array($curl, [
-            	CURLOPT_URL => "https://ai-translate.p.rapidapi.com/translate",
+            	CURLOPT_URL => "https://ai-translate.p.rapidapi.com/translates",
             	CURLOPT_RETURNTRANSFER => true,
             	CURLOPT_FOLLOWLOCATION => true,
             	CURLOPT_ENCODING => "",
@@ -105,9 +89,23 @@ class CronTodayHistoryController extends Controller
             	CURLOPT_CUSTOMREQUEST => "POST",
             	CURLOPT_POSTFIELDS => "{\r
                 \"texts\": [\r
-                    \" $texte_to_translate\",\r
+                    \"$today_history_translate->title\",\r
+                    \"$today_history_translate->synopsis\",\r
+                    \"$today_history_translate->date\"\r
                 ],\r
-                \"tl\": \"ar\",\r
+                \"tls\": [\r
+                    \"ar\",\r
+                    \"de\",\r
+                    \"es\",\r
+                    \"fr\",\r
+                    \"hi\",\r
+                    \"it\",\r
+                    \"pt\",\r
+                    \"ru\",\r
+                    \"sv\",\r
+                    \"tr\",\r
+                    \"zh\"\r
+                ],\r
                 \"sl\": \"en\"\r
             }",
             	CURLOPT_HTTPHEADER => [
@@ -122,48 +120,102 @@ class CronTodayHistoryController extends Controller
             
             curl_close($curl);
             
-            
             if ($err) {
             	echo "cURL Error #:" . $err;
             } else {
-                echo $response; exit;
-            	$response = explode('$$$$', $response['data']['translations']['translatedText']);
-            	$today_history_new = new TodayHistory();
-            	$today_history_new->code_lang = $locale;
-                $today_history_new->title = $response[0];
-                $today_history_new->date = $today_history_translate->date;
-                $today_history_new->synopsis = $response[1];
-                $today_history_new->url =$today_history_translate->url;
-                $today_history_new->slug = Str::slug($response[0]);
-                $today_history_new->updated_at = date('Y-m-d H:i:s');
-                echo "<br />Inserted : " . $inserted = $today_history_new->save();
-
-                if ($inserted) {
-                    $todays_historys = TodayHistory::orderby('id', 'desc')->get();
-                    $xml = '<?xml version="1.0" encoding="utf-8"?>';
-                    $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
-                    $xml .= '<url>';
-                    $xml .= '<loc>https://monguide.net/en/today-history</loc>';
-                    $xml .= '<lastmod>2022-11-11T00:30:00+01:00</lastmod>';
-                    $xml .= '<changefreq>Always</changefreq>';
-                    $xml .= '<priority>1.0</priority>';
-                    $xml .= '</url>';
-                    foreach ($todays_historys as $key => $today_history) {
+                // echo $response; exit;
+                 $responses = json_decode($response, true);
+            // 	var_dump($response);exit;
+            	try {
+                
+            	foreach($responses as $key_resp => $response){
+            	    if(!empty($response['texts'])){
+            	       // $response_text = explode('$$$$', $response['texts']);
+            	    }
+            	    else{
+            	        var_dump($response);exit;
+            	    }
+                	$today_history_new = new TodayHistory();
+                	$langue = $response['tl'];
+                	if($response['tl'] == 'sv'){
+                	    $langue = 'se';    
+                	}
+                	
+                // 	if($langue == 'ar'){
+                // 	    var_dump($response_text);exit;
+                // 	}
+            	    $today_history_new->code_lang = $langue;  
+                	
+                    $today_history_new->title = $response['texts'][0];
+                    $today_history_new->date = (!empty($response['texts'][2]) ? $response['texts'][2] : 'none');
+                    $today_history_new->synopsis = (!empty($response['texts'][1]) ? $response['texts'][1] : 'none');
+                    $today_history_new->slug = ($langue == 'zh') ? $today_history_translate->slug  : Str::slug($response['texts'][0]);
+                    $today_history_new->url ='https://monguide.net/'.$langue.'/today-history/'.$today_history_new->slug.'/'.$today_history_new->id;
+                    $today_history_new->updated_at = date('Y-m-d H:i:s');
+                    $today_history_new->translated = 2;
+                    $today_history_new->translated_for = $today_history_translate->id;
+                    echo "<br />Inserted : " . $inserted = $today_history_new->save();
+    
+                    if ($inserted) {
+                        $todays_historys = TodayHistory::orderby('id', 'desc')->get();
+                        $xml = '<?xml version="1.0" encoding="utf-8"?>';
+                        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
                         $xml .= '<url>';
-                        $xml .= '<loc>https://monguide.net/' . $today_history->code_lang . '/today-history/' . $today_history->slug . '/' . $today_history->id . '</loc>';
-                        $xml .= '<lastmod>' . date('Y-m-d\TH:i:s+01:00', strtotime($today_history->created_at)) . '</lastmod>';
+                        $xml .= '<loc>https://monguide.net/en/today-history</loc>';
+                        $xml .= '<lastmod>2022-11-11T00:30:00+01:00</lastmod>';
                         $xml .= '<changefreq>Always</changefreq>';
                         $xml .= '<priority>1.0</priority>';
                         $xml .= '</url>';
+                        foreach ($todays_historys as $key => $today_history) {
+                            $xml .= '<url>';
+                            $xml .= '<loc>https://monguide.net/' . $today_history->code_lang . '/today-history/' . $today_history->slug . '/' . $today_history->id . '</loc>';
+                            $xml .= '<lastmod>' . date('Y-m-d\TH:i:s+01:00', strtotime($today_history->created_at)) . '</lastmod>';
+                            $xml .= '<changefreq>Always</changefreq>';
+                            $xml .= '<priority>1.0</priority>';
+                            $xml .= '</url>';
+                        }
+                        $xml .= '</urlset>';
+                        if (file_put_contents('sitemaps/todayhistory.xml', $xml)) {
+                            echo "\ntodayhistory.xml file created on project root folder.. : ";
+                        }
                     }
-                    $xml .= '</urlset>';
-                    if (file_put_contents('sitemaps/todayhistory.xml', $xml)) {
-                        echo "\ntodayhistory.xml file created on project root folder.. : ";
-                    }
+            	}
+            	} catch (\Exception $e) {
+            	    $today_history_translate->translated = 9;
+            	    $today_history_translate->save();
+                    echo 'Caught exception: ',  $e->getMessage(), "\n";
+                      var_dump($response_text);exit;
+                    var_dump($response);
                 }
+            	
             }
+            $today_history_translate->translated = 1;
+            $today_history_translate->save();
         }
-        
-        
+        $this->generetasitemap();
+    }
+    
+    public function generetasitemap(){
+        $todays_historys = TodayHistory::orderby('id', 'desc')->get();
+        $xml = '<?xml version="1.0" encoding="utf-8"?>';
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">';
+        $xml .= '<url>';
+        $xml .= '<loc>https://monguide.net/en/today-history</loc>';
+        $xml .= '<lastmod>2022-11-11T00:30:00+01:00</lastmod>';
+        $xml .= '<changefreq>Always</changefreq>';
+        $xml .= '<priority>1.0</priority>';
+        $xml .= '</url>';
+        foreach ($todays_historys as $key => $today_history) {
+            $xml .= '<url>';
+            $xml .= '<loc>https://monguide.net/' . $today_history->code_lang . '/today-history/' . $today_history->slug . '/' . $today_history->id . '</loc>';
+            $xml .= '<lastmod>' . date('Y-m-d\TH:i:s+01:00', strtotime($today_history->created_at)) . '</lastmod>';
+            $xml .= '<changefreq>Always</changefreq>';
+            $xml .= '<priority>1.0</priority>';
+            $xml .= '</url>';
+        }
+        $xml .= '</urlset>';
+        if (file_put_contents('sitemaps/todayhistory.xml', $xml)) {
+            echo "\ntodayhistory.xml file created on project root folder.. : ";
+        }
     }
 }
